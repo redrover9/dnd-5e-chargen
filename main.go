@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"reflect"
 	"sort"
 	"strings"
 
@@ -33,7 +34,6 @@ func rollAbilityScores() [][]int {
 		for j := 0; j < 4; j++ {
 			allRolls[i][j] = rollD6()
 		}
-		//fmt.Println()
 	}
 	return allRolls
 }
@@ -73,13 +73,24 @@ func getCharInfo() (string, string, string, string) {
 	charClass = strings.TrimSuffix(charClass, "\n")
 	charClass = strings.Title(charClass)
 
+	test := "Bard"
+	fmt.Println(reflect.TypeOf(test))
+	fmt.Println(reflect.TypeOf(charClass))
+	fmt.Println(charClass == "Bard")
+
 	return charName, charRace, charSubRace, charClass
 }
 
 func finalizeScores() []int {
-	_, _, _, charClass := getCharInfo()
+	charName, charRace, charSubRace, charClass := getCharInfo()
+
+	fmt.Printf("Name: %v\n", charName)
+	fmt.Printf("Race: %v\n", charRace)
+	fmt.Printf("Subrace: %v\n", charSubRace)
+	fmt.Printf("Class: %v\n", charClass)
+
 	rolledScores := generateAbilityScores()
-	abilityScores := []int{0, 0, 0, 0, 0, 0}
+
 	if charClass == "Barbarian" {
 		strength := rolledScores[len(rolledScores)-1]
 		constitution := rolledScores[len(rolledScores)-2]
@@ -210,12 +221,9 @@ func finalizeScores() []int {
 		abilityScores := []int{strength, dexterity, constitution, intelligence, wisdom, charisma}
 		return abilityScores
 
+	} else {
+		return []int{0, 0, 0, 0, 0, 0}
 	}
-	//if (charRace == "Dwarf") {
-
-	//}
-	//abilityScores := []int{strength, dexterity, constitution, intelligence, wisdom, charisma}
-	return abilityScores
 }
 
 func main() {
