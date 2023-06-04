@@ -1,13 +1,12 @@
-@font-face {
-  font-family: 'Playfair Display', serif;  
-  src: url("../../../fonts/Cinzel/static/Cinzel-SemiBold.ttf");
-}
+@import url(https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@600&display=swap);
+
 .header {
     background-color: #906047;
     width: 100%;
     margin: 0;
     padding: 10px;
     color: #291b14;
+    font-family: "Cinzel", serif;
   
     h2 {
       margin: 0;
