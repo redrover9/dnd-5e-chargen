@@ -7,9 +7,11 @@ import Header from './components/Header/Header';
 class App extends Component {
   constructor(props) {
     super(props);
-    connect();
+    this.state = {
+      inputHistory: []
+    }
   }
-
+ 
   send() {
     console.log("hello");
     sendMsg("hello");
@@ -19,9 +21,20 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <InputHistory inputHistory={this.state.inputHistory} />
         <button onClick={this.send}>Hit</button>
       </div>
     );
+  }
+
+  componentDidMount() {
+    connect((msg) => {
+      console.log("New data")
+      this.setState(prevState => ({
+        inputHistory: [...this.state.inputHistory, msg]
+      }))
+      console.log(this.state);
+    });
   }
 }
 
