@@ -8,7 +8,7 @@ class InputHistory extends Component {
     ));
 
     return (
-      <div className="Input History">
+      <div className="InputHistory">
         <h2>Input History</h2>
         {messages}
       </div>
