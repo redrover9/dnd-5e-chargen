@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { connect, sendMsg } from "./api";
 import Header from './components/Header/Header';
+import InputHistory from "./components/InputHistory";
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +11,16 @@ class App extends Component {
     this.state = {
       inputHistory: []
     }
+  }
+
+  componentDidMount() {
+    connect((msg) => {
+      console.log("New data")
+      this.setState(prevState => ({
+        inputHistory: [...this.state.inputHistory, msg]
+      }))
+      console.log(this.state);
+    });
   }
  
   send() {
@@ -27,15 +38,6 @@ class App extends Component {
     );
   }
 
-  componentDidMount() {
-    connect((msg) => {
-      console.log("New data")
-      this.setState(prevState => ({
-        inputHistory: [...this.state.inputHistory, msg]
-      }))
-      console.log(this.state);
-    });
-  }
 }
 
 export default App;

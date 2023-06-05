@@ -1,3 +1,3 @@
 import InputHistory from "./InputHistory.jsx";
 
-export default InputHistory
+export default InputHistory;
