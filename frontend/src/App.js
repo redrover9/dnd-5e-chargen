@@ -17,7 +17,7 @@ class App extends Component {
     connect((msg) => {
       console.log("New data")
       this.setState(prevState => ({
-        inputHistory: [...this.state.inputHistory, msg]
+        inputHistory: [...prevState.inputHistory, msg]
       }))
       console.log(this.state);
     });
